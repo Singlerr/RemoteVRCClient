@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "w12oozp/V1fXOHmP2rL8RExOFtONlK7bwn+2x81+tkwkjwshwDR6WDKq9/R4oBsARat0xkl3sX3s9VPnwf7YHQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Singlerr\\source\\repos\\VRCTower\\VRCTower\\VRCTower.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Singlerr\\.nuget\\packages\\jsonsubtypes\\1.8.0\\jsonsubtypes.1.8.0.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\modernwpfui\\0.9.4\\modernwpfui.0.9.4.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\polly\\7.2.1\\polly.7.2.1.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\vrchat.api\\1.6.5\\vrchat.api.1.6.5.nupkg.sha512",
+    "C:\\Users\\Singlerr\\.nuget\\packages\\websocketsharp-netstandard\\1.0.1\\websocketsharp-netstandard.1.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

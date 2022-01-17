@@ -1,0 +1,88 @@
+﻿<Window x:Class="VRCTower.ControlPanel"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        Closing="Window_Closing"
+        Title="ControlPanel" Height="450" Width="800">
+    <Grid>
+        <ListBox Name="_queueList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,42,461,183"
+                 SelectionChanged="_queueList_SelectionChanged" />
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="큐 목록"
+                   VerticalAlignment="Top" FontSize="20" />
+        <TextBox Name="_usernameText" HorizontalAlignment="Left" Margin="373,77,0,0" TextWrapping="Wrap" Text=""
+                 VerticalAlignment="Top"
+                 Width="385" IsReadOnly="True" />
+        <TextBlock HorizontalAlignment="Left" Margin="373,57,0,0" TextWrapping="Wrap" Text="닉네임"
+                   VerticalAlignment="Top" FontSize="15" />
+        <TextBlock HorizontalAlignment="Left" Margin="373,114,0,0" TextWrapping="Wrap" Text="UUID"
+                   VerticalAlignment="Top" FontSize="15" />
+        <TextBox Name="_uuid" HorizontalAlignment="Left" MaxLength="10" Margin="373,139,0,0" TextWrapping="Wrap"
+                 Text=""
+                 VerticalAlignment="Top" Width="385" IsReadOnly="True" />
+        <TextBlock HorizontalAlignment="Left" Margin="373,176,0,0" TextWrapping="Wrap" Text="현재 위치해 있는 월드 ID"
+                   VerticalAlignment="Top" FontSize="15" />
+        <TextBox Name="_instanceId" HorizontalAlignment="Left" Margin="373,206,0,0" TextWrapping="Wrap" Text=""
+                 VerticalAlignment="Top" Width="385" IsReadOnly="True" Height="20" />
+        <Rectangle HorizontalAlignment="Left" Height="209" Margin="361,42,0,0" Stroke="Black" VerticalAlignment="Top"
+                   Width="416" />
+        <TextBlock HorizontalAlignment="Left" Margin="358,15,0,0" TextWrapping="Wrap" Text="로그인 상태"
+                   VerticalAlignment="Top" FontSize="20" />
+        <TextBlock HorizontalAlignment="Left" Margin="10,288,0,0" TextWrapping="Wrap" Text="큐 이름"
+                   VerticalAlignment="Top" FontSize="15" />
+        <TextBlock HorizontalAlignment="Left" Margin="10,256,0,0" TextWrapping="Wrap" Text="새 큐 만들기"
+                   VerticalAlignment="Top" FontSize="20" />
+        <TextBox Name="_newQueueName" HorizontalAlignment="Left" Margin="10,313,0,0" TextWrapping="Wrap" Text=""
+                 VerticalAlignment="Top" Width="329" />
+        <Button Name="_btn_createQueue" Content="만들기 ${permissionStatus}" IsEnabled="False" Margin="10,362,0,0"
+                VerticalAlignment="Top"
+                Width="329" Click="_btn_createQueue_Click" />
+        <TextBlock HorizontalAlignment="Left" Margin="18,321,0,0" TextWrapping="Wrap" Text="큐 이름"
+                   VerticalAlignment="Top">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=_newQueueName}" Value="">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="358,256,0,0" TextWrapping="Wrap" Text="큐 참가/탈퇴/초대/삭제"
+                   VerticalAlignment="Top" FontSize="20" />
+        <TextBlock HorizontalAlignment="Left" Margin="361,291,0,0" TextWrapping="Wrap" Text="큐 이름"
+                   VerticalAlignment="Top" FontSize="15" />
+        <TextBox x:Name="_queueName" IsEnabled="False" HorizontalAlignment="Left" Margin="361,313,0,0"
+                 TextWrapping="Wrap" Text=""
+                 VerticalAlignment="Top" Width="413" Height="32" />
+        <TextBlock HorizontalAlignment="Left" Margin="369,324,0,0" TextWrapping="Wrap" Text="큐 목록에서 큐를 선택하세요."
+                   VerticalAlignment="Top">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=_queueName}" Value="">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Button Name="_btn_jojn_queue" Content="큐 참가" Margin="361,362,0,0" VerticalAlignment="Top" Width="106"
+                Click="_btn_jojn_queue_Click" />
+        <Button Name="_btn_leave_queue" Content="큐 탈퇴" Margin="472,362,0,0" VerticalAlignment="Top" Width="98"
+                Click="_btn_leave_queue_Click" />
+        <Button Name="_btn_inivte_all" Content="초대" Margin="575,362,0,0" VerticalAlignment="Top" Width="98"
+                Click="_btn_invite_all_Click" />
+        <Button Name="_btn_delete_queue" Content="큐 삭제" Margin="677,362,0,0" VerticalAlignment="Top" Width="98"
+                Click="_btn_delete_queue_OnClick" />
+
+    </Grid>
+</Window>

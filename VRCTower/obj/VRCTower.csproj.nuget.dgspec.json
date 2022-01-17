@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Singlerr\\source\\repos\\VRCTower\\VRCTower\\VRCTower.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Singlerr\\source\\repos\\VRCTower\\VRCTower\\VRCTower.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Singlerr\\source\\repos\\VRCTower\\VRCTower\\VRCTower.csproj",
+        "projectName": "VRCTower",
+        "projectPath": "C:\\Users\\Singlerr\\source\\repos\\VRCTower\\VRCTower\\VRCTower.csproj",
+        "packagesPath": "C:\\Users\\Singlerr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Singlerr\\source\\repos\\VRCTower\\VRCTower\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Singlerr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "ModernWpfUI": {
+              "target": "Package",
+              "version": "[0.9.4, )"
+            },
+            "VRChat.API": {
+              "target": "Package",
+              "version": "[1.6.5, )"
+            },
+            "WebSocketSharp-netstandard": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

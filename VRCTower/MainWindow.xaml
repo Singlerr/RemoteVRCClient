@@ -1,0 +1,60 @@
+﻿<Window x:Class="VRCTower.MainWindow"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Rectangle HorizontalAlignment="Center" Height="308" Stroke="Black" VerticalAlignment="Center" Width="638" />
+        <Label Content="VRChat에 로그인하세요" HorizontalAlignment="Left" Margin="81,19,0,0" VerticalAlignment="Top"
+               FontSize="30" />
+        <TextBox Name="_idText" TabIndex="0" HorizontalAlignment="Left" Margin="107,148,0,0" TextWrapping="Wrap"
+                 Text=""
+                 VerticalAlignment="Top" Width="203" Height="12" />
+        <Button Content="로그인" TabIndex="2" Margin="107,233,0,0" VerticalAlignment="Top" Height="34" Width="203"
+                Click="Click_VRC_Login" />
+        <Label Content="VRChat ID로 로그인" HorizontalAlignment="Left" Margin="107,124,0,0" VerticalAlignment="Top" />
+        <Button Content="로그인" Margin="455,148,0,0" VerticalAlignment="Top" Height="75" Width="181"
+                Click="Click_Steam_Login" />
+        <Label Content="Steam으로 로그인" HorizontalAlignment="Left" Margin="455,124,0,0" VerticalAlignment="Top" />
+        <PasswordBox Name="_passwordText" TabIndex="1" HorizontalAlignment="Left" Margin="107,185,0,0"
+                     VerticalAlignment="Top"
+                     Width="203" Height="32" />
+
+        <ProgressBar Name="_progress" HorizontalAlignment="Center" Visibility="Hidden" Height="24" Margin="0,316,0,0"
+                     VerticalAlignment="Top" Width="586" IsIndeterminate="True" />
+        <TextBlock HorizontalAlignment="Left" Margin="119,156,0,0" TextWrapping="Wrap" Text="ID"
+                   VerticalAlignment="Top">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=_idText}" Value="">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="119,193,0,0" TextWrapping="Wrap" Text="PW"
+                   VerticalAlignment="Top">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=_passwordText}" Value="">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+    </Grid>
+</Window>
