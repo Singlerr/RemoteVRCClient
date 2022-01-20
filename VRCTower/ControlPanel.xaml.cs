@@ -17,16 +17,21 @@ namespace VRCTower
     {
         private readonly string _apiKey;
         private readonly string _authCookie;
+        private readonly string _id;
+        private readonly string _password;
         private readonly string _userId;
         private readonly string _username;
         private readonly string _webSocketUrl = "ws://remotevrc.kro.kr:8080/cloud";
-        private Configuration _configuration;
+        private readonly Configuration _configuration;
         private WebSocket _webSocket;
 
-        public ControlPanel(string userId, string authCookie, string apiKey, string username)
+        public ControlPanel(string userId, string authCookie, string apiKey, string username, string id,
+            string password)
         {
             _userId = userId;
             _apiKey = apiKey;
+            _id = id;
+            _password = password;
             _authCookie = authCookie;
             _username = username;
             _configuration = new Configuration();
@@ -114,7 +119,7 @@ namespace VRCTower
                             var acceptWaiter = AcceptFriendRequest(readOnly.Message).GetAwaiter();
                             acceptWaiter.OnCompleted(delegate
                             {
-                                _webSocket.SendAsync(JsonConvert.SerializeObject(acceptWaiter.GetResult()),null);
+                                _webSocket.SendAsync(JsonConvert.SerializeObject(acceptWaiter.GetResult()), null);
                             });
                             break;
                         //Accept invite request
@@ -122,17 +127,17 @@ namespace VRCTower
                             var waiter = AcceptInviteRequest(readOnly.Message).GetAwaiter();
                             waiter.OnCompleted(delegate
                             {
-                                _webSocket.SendAsync(JsonConvert.SerializeObject(waiter.GetResult()),null);
+                                _webSocket.SendAsync(JsonConvert.SerializeObject(waiter.GetResult()), null);
                             });
                             break;
                         //Invite User
                         case -4:
                             var userId = readOnly.Message.Split('|')[0];
                             var worldId = readOnly.Message.Split('|')[1];
-                            var inviteWaiter = InviteUser(userId,worldId).GetAwaiter();
+                            var inviteWaiter = InviteUser(userId, worldId).GetAwaiter();
                             inviteWaiter.OnCompleted(delegate
                             {
-                                _webSocket.SendAsync(JsonConvert.SerializeObject(inviteWaiter.GetResult()),null);
+                                _webSocket.SendAsync(JsonConvert.SerializeObject(inviteWaiter.GetResult()), null);
                             });
                             break;
                         default:
@@ -155,7 +160,7 @@ namespace VRCTower
 
         private void OnOpen(object sender, EventArgs e)
         {
-            var handshake = new DataPacket(_apiKey, _authCookie, _userId);
+            var handshake = new DataPacket(_id, _password, _userId);
             var str = JsonConvert.SerializeObject(handshake);
             _webSocket.SendAsync(str, null);
         }
@@ -196,6 +201,7 @@ namespace VRCTower
             if (_webSocket != null && _webSocket.IsAlive)
             {
                 _webSocket.Close();
+                Application.Current.Shutdown();
                 return;
             }
 
@@ -308,12 +314,11 @@ namespace VRCTower
             var acceptResp = await notificationApi.AcceptFriendRequestWithHttpInfoAsync(notificationId);
 
             if (acceptResp.StatusCode != HttpStatusCode.OK)
-            {
                 return new ReadOnly("해당 친구 요청을 찾을 수 없거나, 친구 요청을 수락하는 과정에서 오류가 발생했습니다.", -1);
-            }
 
             return new ReadOnly(notificationId, 200);
         }
+
         private async Task<ReadOnly> AcceptInviteRequest(string notificationId)
         {
             var inviteApi = new InviteApi(_configuration);
@@ -321,29 +326,23 @@ namespace VRCTower
             var acceptResp = await inviteApi.RespondInviteWithHttpInfoAsync(notificationId);
 
             if (acceptResp.StatusCode != HttpStatusCode.OK)
-            {
                 return new ReadOnly("해당 초대 요청을 찾을 수 없거나, 초대 요청을 수락하는 과정에서 오류가 발생했습니다.", -1);
-            }
 
             return new ReadOnly(notificationId, 200);
         }
+
         private async Task<ReadOnly> InviteUser(string userId, string worldId)
         {
-       
-
             var inviteApi = new InviteApi(_configuration);
 
             var usersApi = new UsersApi(_configuration);
 
             var friendsApi = new FriendsApi(_configuration);
-            
+
 
             var targetUserResp = await usersApi.GetUserWithHttpInfoAsync(userId);
 
-            if (targetUserResp.StatusCode != HttpStatusCode.OK)
-            {
-                return new ReadOnly("초대하려는 유저를 찾을 수 없습니다.", -1);
-            }
+            if (targetUserResp.StatusCode != HttpStatusCode.OK) return new ReadOnly("초대하려는 유저를 찾을 수 없습니다.", -1);
 
             var inviteUserResp = await inviteApi.InviteUserWithHttpInfoAsync(userId, new InviteRequest(worldId));
             if (inviteUserResp.StatusCode == HttpStatusCode.Forbidden)
@@ -356,13 +355,9 @@ namespace VRCTower
             }
 
             if (inviteUserResp.StatusCode == HttpStatusCode.OK)
-            {
                 return new ReadOnly("Accept invite request", -3);
-            }
-            else
-            {
-                return new ReadOnly("Internal error", -1);
-            }
+            return new ReadOnly("Internal error", -1);
         }
+
     }
 }

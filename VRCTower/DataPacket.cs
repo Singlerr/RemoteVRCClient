@@ -4,16 +4,16 @@ namespace VRCTower
 {
     public class DataPacket
     {
-        [JsonProperty("apiKey")] private string _apiKey;
+        [JsonProperty("id")] private string _id;
 
-        [JsonProperty("authCookie")] private string _authCookie;
+        [JsonProperty("password")] private string _password;
 
         [JsonProperty("userId")] private string _userId;
 
-        public DataPacket(string apiKey, string authCookie, string userId)
+        public DataPacket(string id, string password, string userId)
         {
-            _apiKey = apiKey;
-            _authCookie = authCookie;
+            _id = id;
+            _password = password;
             _userId = userId;
         }
     }

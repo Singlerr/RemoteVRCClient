@@ -42,7 +42,7 @@ namespace VRCTower
                     var result = task.GetResult();
                     var user = result.Data;
                     var controlPanel = new ControlPanel(user.Id, GetCookie(result.Cookies, "auth").Value,
-                        GetCookie(result.Cookies, "apiKey").Value, user.Username);
+                        GetCookie(result.Cookies, "apiKey").Value, user.Username, conf.Username, conf.Password);
                     controlPanel.Show();
                     Hide();
                 }

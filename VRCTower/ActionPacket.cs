@@ -8,9 +8,9 @@ namespace VRCTower
 
         [JsonProperty("params")] private string[] _args;
 
-        public ActionPacket(string apiKey, string authCookie, string userId, string action = "",
+        public ActionPacket(string id, string password, string userId, string action = "",
             string[] args = null) : base(
-            apiKey, authCookie, userId)
+            id, password, userId)
         {
             _action = action;
             _args = args;
